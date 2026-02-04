@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Card 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            margin: 20px;
+            position: relative;
+            animation: cardAppear 0.5s ease-out;
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .teddy {
+            font-size: 120px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .message {
+            font-size: 28px;
+            color: #d63384;
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+            position: relative;
+        }
+
+        .celebration {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .celebration.active {
+            display: block;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff6b6b;
+            animation: confetti-fall 3s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            animation: heart-float 2s ease-in-out infinite;
+        }
+
+        @keyframes heart-float {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-20px) scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        .success-container {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .success-container.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .yay-text {
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .best-decision {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .dance-gif {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 15px;
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: block;
+        }
+
+        .love-text {
+            font-size: 22px;
+            color: #333;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        /* Mobile Responsive Styles */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+                overflow-x: hidden;
+            }
+
+            .card {
+                padding: 25px 20px;
+                border-radius: 15px;
+                max-width: 100%;
+                width: calc(100% - 20px);
+                margin: 10px;
+            }
+
+            .teddy {
+                font-size: 80px;
+                margin-bottom: 15px;
+            }
+
+            .message {
+                font-size: 20px;
+                margin-bottom: 25px;
+                line-height: 1.4;
+                padding: 0 10px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+                margin-top: 20px;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                padding: 12px 30px;
+                font-size: 18px;
+            }
+
+            .btn-yes:hover {
+                transform: scale(1.05);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .card {
+                padding: 20px 15px;
+            }
+
+            .teddy {
+                font-size: 70px;
+                margin-bottom: 12px;
+            }
+
+            .message {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+
+            .heart {
+                font-size: 25px;
+            }
+
+            .yay-text {
+                font-size: 36px;
+            }
+
+            .best-decision {
+                font-size: 20px;
+            }
+
+            .dance-gif {
+                max-width: 100%;
+            }
+
+            .love-text {
+                font-size: 18px;
+            }
+        }
+
+        /* Touch device support for No button */
+        @media (hover: none) and (pointer: coarse) {
+            .btn-no:active {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="teddy">🧸</div>
+        <div class="message">Anushka, will you be my valentine? 💕</div>
+        <div class="buttons">
+            <button class="btn btn-yes" id="yesBtn">Yes 💖</button>
+            <button class="btn btn-no" id="noBtn">No</button>
+        </div>
+        
+        <div class="success-container" id="successContainer">
+            <div class="yay-text">
+                <span>💖</span>
+                <span>YAY!!!</span>
+                <span>💖</span>
+            </div>
+            <div class="best-decision">Best decision ever 🥳</div>
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXZva2o3bDMxcHVoeHNyaHc2dmFldTl1YWxpc2pnazY0NHpmOWxhYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/blSTtZehjAZ8I/giphy.gif" 
+                 onerror="this.onerror=null; this.src='https://media.giphy.com/media/3o7aCTPPm4OHfRLSH6/giphy.gif';" 
+                 alt="Dancing celebration" class="dance-gif" id="danceGif">
+            <div class="love-text">I love you ❤️</div>
+        </div>
+    </div>
+
+    <div class="celebration" id="celebration"></div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const celebration = document.getElementById('celebration');
+
+        // No button hover effect - moves away (desktop)
+        noBtn.addEventListener('mouseenter', function() {
+            if (window.innerWidth > 768) {
+                const card = this.closest('.card');
+                const cardRect = card.getBoundingClientRect();
+                const btnRect = this.getBoundingClientRect();
+                
+                const maxX = cardRect.width - btnRect.width - 40;
+                const maxY = cardRect.height - btnRect.height - 40;
+                
+                const randomX = Math.random() * maxX;
+                const randomY = Math.random() * maxY;
+                
+                this.style.position = 'absolute';
+                this.style.left = randomX + 'px';
+                this.style.top = randomY + 'px';
+                this.style.transition = 'all 0.3s ease';
+            }
+        });
+
+        // Touch support for mobile - No button moves on touch
+        let touchStartX = 0;
+        let touchStartY = 0;
+        
+        noBtn.addEventListener('touchstart', function(e) {
+            if (window.innerWidth <= 768) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                
+                const card = this.closest('.card');
+                const cardRect = card.getBoundingClientRect();
+                const btnRect = this.getBoundingClientRect();
+                
+                const maxX = cardRect.width - btnRect.width - 20;
+                const maxY = cardRect.height - btnRect.height - 20;
+                
+                const randomX = Math.random() * maxX;
+                const randomY = Math.random() * maxY;
+                
+                this.style.position = 'absolute';
+                this.style.left = randomX + 'px';
+                this.style.top = randomY + 'px';
+                this.style.transition = 'all 0.3s ease';
+                
+                e.preventDefault();
+            }
+        });
+
+        // Yes button click - show celebration
+        yesBtn.addEventListener('click', function() {
+            celebration.classList.add('active');
+            createConfetti();
+            createHearts();
+            
+            // Hide original content
+            document.querySelector('.teddy').style.display = 'none';
+            document.querySelector('.message').style.display = 'none';
+            document.querySelector('.buttons').style.display = 'none';
+            
+            // Show success container with dancing GIF
+            const successContainer = document.getElementById('successContainer');
+            successContainer.classList.add('active');
+        });
+
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#f0932b', '#eb4d4b', '#6c5ce7', '#a29bfe'];
+            
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.width = Math.random() * 10 + 5 + 'px';
+                    confetti.style.height = confetti.style.width;
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    celebration.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }, i * 20);
+            }
+        }
+
+        function createHearts() {
+            const hearts = ['💕', '💖', '💗', '💓', '💝', '💘', '💞', '💟'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.top = Math.random() * 100 + '%';
+                    heart.style.animationDelay = Math.random() * 2 + 's';
+                    celebration.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 3000);
+                }, i * 100);
+            }
+        }
+    </script>
+</body>
+</html>
